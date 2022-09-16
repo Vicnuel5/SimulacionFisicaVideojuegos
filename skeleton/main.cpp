@@ -133,5 +133,7 @@ int main(int, const char*const*)
 	cleanupPhysics(false);
 #endif
 
+	delete p;
+
 	return 0;
 }
