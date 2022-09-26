@@ -3,6 +3,7 @@
 #include <PxPhysicsAPI.h>
 
 #include <vector>
+#include <list>
 
 #include "core.hpp"
 #include "RenderUtils.hpp"
@@ -12,8 +13,11 @@
 
 
 #include "Particle.h"
-Particle* p;
 
+
+std::list<Particle*>  particles;
+Particle* suelo;
+Particle* diana;
 
 using namespace physx;
 
@@ -60,7 +64,10 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
-	p = new Particle({ 0, 0, 0 }, { 5, 5, 20 });
+	suelo = new Particle({ 0, 0, 0 }, CreateShape(physx::PxBoxGeometry(300, 1, 300)));
+	suelo->setColor({ 0.5, 0.5, 0, 1 });
+	diana = new Particle({ -10, 30, -10 }, CreateShape(physx::PxSphereGeometry(10)));
+	diana->setColor({ 1, 0, 0, 1 });
 }
 
 
@@ -74,7 +81,18 @@ void stepPhysics(bool interactive, double t)
 	gScene->simulate(t);
 	gScene->fetchResults(true);
 
-	p->integrate(t);
+	for (auto p : particles)
+		p->integrate(t);
+
+	for (auto p = particles.begin(); p != particles.end(); ) {
+		if ((*p)->getPos().p.y < 0) {
+			auto aux = p;
+			p++;
+			delete* aux;
+			particles.erase(aux);
+		}
+		else p++;		
+	}
 }
 
 // Function to clean data
@@ -100,10 +118,16 @@ void keyPress(unsigned char key, const PxTransform& camera)
 {
 	PX_UNUSED(camera);
 
+	Vector3 eye = GetCamera()->getEye();
+	Vector3 dir = GetCamera()->getDir();
+
 	switch(toupper(key))
 	{
-	//case 'B': break;
-	//case ' ':	break;
+	case 'Q': 
+		particles.push_back(new Particle(eye, dir * 30, {0, -9.8, 0}, 0.95, 0.5));
+		std::cout << "Eye: " << eye.x << " " << eye.y << " " << eye.z << "\n";
+		std::cout << "Dir: " << dir.x << " " << dir.y << " " << dir.z << "\n";
+		break;
 	case ' ':
 	{
 		break;
@@ -133,7 +157,11 @@ int main(int, const char*const*)
 	cleanupPhysics(false);
 #endif
 
-	delete p;
+	for (auto p : particles)
+		delete p;
+
+	delete suelo;
+	delete diana;
 
 	return 0;
 }
