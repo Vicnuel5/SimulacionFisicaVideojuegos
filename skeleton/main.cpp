@@ -11,13 +11,8 @@
 
 #include <iostream>
 
-
-#include "Particle.h"
-
-
-std::list<Particle*>  particles;
-Particle* suelo;
-Particle* diana;
+#include "Particles/Particle.h"
+#include "ParticleSystems/Fuente.h"
 
 using namespace physx;
 
@@ -36,7 +31,19 @@ PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
+Particle* suelo;
+Particle* diana;
 
+std::list<Particle*>  particles;
+
+enum ProyectilType {
+	PISTOL,
+	ARTILLERY,
+	FIREBALL,
+	LASER
+};
+
+ProyectilType pType = PISTOL;
 
 
 
@@ -68,6 +75,7 @@ void initPhysics(bool interactive)
 	suelo->setColor({ 0.5, 0.5, 0, 1 });
 	diana = new Particle({ -10, 30, -10 }, CreateShape(physx::PxSphereGeometry(10)));
 	diana->setColor({ 1, 0, 0, 1 });
+	//fuente = new Fuente({ 0, 0, 0 }, { 5, 30, 5 }, { 0, -9.8, 0 });
 }
 
 
@@ -85,7 +93,7 @@ void stepPhysics(bool interactive, double t)
 		p->integrate(t);
 
 	for (auto p = particles.begin(); p != particles.end(); ) {
-		if ((*p)->getPos().p.y < 0) {
+		if ((*p)->getPos().y < 0) {
 			auto aux = p;
 			p++;
 			delete* aux;
@@ -118,21 +126,56 @@ void keyPress(unsigned char key, const PxTransform& camera)
 {
 	PX_UNUSED(camera);
 
-	Vector3 eye = GetCamera()->getEye();
-	Vector3 dir = GetCamera()->getDir();
-
-	switch(toupper(key))
+	switch (toupper(key))
 	{
-	case 'Q': 
-		particles.push_back(new Particle(eye, dir * 30, {0, -9.8, 0}, 0.95, 0.5));
-		std::cout << "Eye: " << eye.x << " " << eye.y << " " << eye.z << "\n";
-		std::cout << "Dir: " << dir.x << " " << dir.y << " " << dir.z << "\n";
+	case 'Q': {
+		Vector3 eye = GetCamera()->getEye();
+		Vector3 dir = GetCamera()->getDir();
+		Particle* p = new Particle(eye);
+		particles.push_back(p);
+		switch (pType)
+			{
+			case PISTOL:
+				p->setMass(0.2f);
+				p->setVel(dir * 35);
+				p->setAcc({ 0, -1.0f, 0 });
+				p->setD(0.99f);
+				p->setColor({ 0.2, 0.2, 0.2, 1});
+				break;
+			case ARTILLERY:
+				p->setMass(200.0f);
+				p->setVel(dir * 30);
+				p->setAcc({ 0, -20.0f, 0 });
+				p->setD(0.99f);
+				p->setColor({ 0, 0, 0, 1 });
+				break;
+			case FIREBALL:
+				p->setMass(1.0f);
+				p->setVel(dir * 10);
+				p->setAcc({ 0, 0.6f, 0 });
+				p->setD(0.9f);
+				p->setColor({ 1, 0, 0, 1 });
+				break;
+			case LASER:
+				p->setMass(0.1f);
+				p->setVel(dir * 100);
+				p->setD(0.99f);
+				p->setColor({ 0, 0, 1, 1 });
+				break;
+			}
 		break;
-	case ' ':
-	{
+		}	
+	case 'Z':
+		pType = PISTOL;
 		break;
-	}
-	default:
+	case 'X':
+		pType = ARTILLERY;
+		break;
+	case 'C':
+		pType = FIREBALL;
+		break;
+	case 'V':
+		pType = LASER;
 		break;
 	}
 }
