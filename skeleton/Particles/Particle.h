@@ -21,7 +21,7 @@ public:
 
 	void setAcc(Vector3 newAcc);
 
-	void setD(float newDump);
+	void setDump(float newDump);
 
 	void setMass(float newMass);
 

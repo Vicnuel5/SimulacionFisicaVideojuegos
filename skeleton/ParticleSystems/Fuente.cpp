@@ -2,43 +2,39 @@
 
 #include "../Particles/Particle.h"
 
-
 Fuente::Fuente(Vector3 std_dev_pos, Vector3 std_dev_vel, Vector3 std_dev_acc) :
-	ParticleGenerator(), std_dev_pos(std_dev_pos), std_dev_vel(std_dev_vel), std_dev_acc(std_dev_acc), cont(SPAWN_TIME)
+	ParticleGenerator(), cont(0), std_dev_pos(std_dev_pos), std_dev_vel(std_dev_vel), std_dev_acc(std_dev_acc)
 {
-	//particles = generateParticles();
 }
 
-std::list<Particle*> Fuente::generateParticles()
-{
-	std::list<Particle*> l = std::list<Particle*>();
-
-	std::random_device rd{};
-	std::mt19937 gen{ rd() };
-
-	for (int i = 0; i < 30; i++) {
-		double rnd = d(gen);
-		Particle* p = new Particle(std_dev_pos * rnd, std_dev_vel * rnd, std_dev_acc, 0.95, 0.5);
-		p->setColor({0, 0, 1, 1});
-		l.push_back(p);
-	}
-
-	return l;
-}
-
-void Fuente::pIntegrate(double t)
+void Fuente::p_Integrate(double t)
 {
 	cont += t;
 
-	if (t >= SPAWN_TIME) {
-		std::random_device rd{};
-		std::mt19937 gen{ rd() };
-		double rnd = d(gen);
-		Particle* p = new Particle(std_dev_pos * rnd, std_dev_vel * rnd, std_dev_acc, 0.95, 0.5);
+	if (cont >= SPAWN_TIME) {
+	
+		Particle* p = new Particle({ 0,0,0 }, std_dev_vel, std_dev_acc, 0.95, 0.5);
 
+		p->setVel({ 0, std_dev_vel.y + dVelY(gen), 0});
+		p->setPos({ dPos(gen), 0, dPos(gen) });
+		p->setColor({ 0, 0, 1, 1 });
+		
 		particles.push_back(p);
 
 		cont = 0;
+	}
+}
+
+void Fuente::p_Refresh()
+{
+	for (auto p = particles.begin(); p != particles.end(); ) {
+		if ((*p)->getPos().y < 0) {
+			auto aux = p;
+			p++;
+			delete* aux;
+			particles.erase(aux);
+		}
+		else p++;
 	}
 }
 

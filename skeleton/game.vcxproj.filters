@@ -13,6 +13,10 @@
     <ClCompile Include="Particles\Particle.cpp" />
     <ClCompile Include="ParticleSystems\ParticleGenerator.cpp" />
     <ClCompile Include="ParticleSystems\Fuente.cpp" />
+    <ClCompile Include="ParticleSystems\Geometric.cpp" />
+    <ClCompile Include="ParticleSystems\Fireworks.cpp" />
+    <ClCompile Include="Scenes\Practica1.cpp" />
+    <ClCompile Include="Scenes\Practica2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -27,6 +31,11 @@
     <ClInclude Include="Particles\Particle.h" />
     <ClInclude Include="ParticleSystems\ParticleGenerator.h" />
     <ClInclude Include="ParticleSystems\Fuente.h" />
+    <ClInclude Include="ParticleSystems\Geometric.h" />
+    <ClInclude Include="ParticleSystems\Fireworks.h" />
+    <ClInclude Include="Scenes\Scene.h" />
+    <ClInclude Include="Scenes\Practica1.h" />
+    <ClInclude Include="Scenes\Practica2.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

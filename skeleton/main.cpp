@@ -11,8 +11,10 @@
 
 #include <iostream>
 
-#include "Particles/Particle.h"
-#include "ParticleSystems/Fuente.h"
+#include "Scenes/Scene.h"
+#include "Scenes/Practica1.h"
+#include "Scenes/Practica2.h"
+
 
 using namespace physx;
 
@@ -31,20 +33,7 @@ PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
-Particle* suelo;
-Particle* diana;
-
-std::list<Particle*>  particles;
-
-enum ProyectilType {
-	PISTOL,
-	ARTILLERY,
-	FIREBALL,
-	LASER
-};
-
-ProyectilType pType = PISTOL;
-
+Scene* scene;
 
 
 // Initialize physics engine
@@ -71,11 +60,8 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
-	suelo = new Particle({ 0, 0, 0 }, CreateShape(physx::PxBoxGeometry(300, 1, 300)));
-	suelo->setColor({ 0.5, 0.5, 0, 1 });
-	diana = new Particle({ -10, 30, -10 }, CreateShape(physx::PxSphereGeometry(10)));
-	diana->setColor({ 1, 0, 0, 1 });
-	//fuente = new Fuente({ 0, 0, 0 }, { 5, 30, 5 }, { 0, -9.8, 0 });
+	scene = new Practica2_2();
+	scene->s_init();
 }
 
 
@@ -89,18 +75,7 @@ void stepPhysics(bool interactive, double t)
 	gScene->simulate(t);
 	gScene->fetchResults(true);
 
-	for (auto p : particles)
-		p->integrate(t);
-
-	for (auto p = particles.begin(); p != particles.end(); ) {
-		if ((*p)->getPos().y < 0) {
-			auto aux = p;
-			p++;
-			delete* aux;
-			particles.erase(aux);
-		}
-		else p++;		
-	}
+	scene->s_integrate(t);
 }
 
 // Function to clean data
@@ -119,6 +94,26 @@ void cleanupPhysics(bool interactive)
 	transport->release();
 	
 	gFoundation->release();
+
+	scene->s_clean();
+}
+
+void createScene(Scene* newScene) {
+	scene->s_clean();
+	delete scene;
+	scene = newScene;
+	scene->s_init();
+}
+
+void changeScene(unsigned char n) {
+
+	switch (n)
+	{
+	case '1': createScene(new Practica1()); break;
+	case '2': createScene(new Practica2_1()); break;
+	case '3': createScene(new Practica2_2()); break;
+	case '4': createScene(new Practica2_3()); break;
+	}
 }
 
 // Function called when a key is pressed
@@ -126,58 +121,8 @@ void keyPress(unsigned char key, const PxTransform& camera)
 {
 	PX_UNUSED(camera);
 
-	switch (toupper(key))
-	{
-	case 'Q': {
-		Vector3 eye = GetCamera()->getEye();
-		Vector3 dir = GetCamera()->getDir();
-		Particle* p = new Particle(eye);
-		particles.push_back(p);
-		switch (pType)
-			{
-			case PISTOL:
-				p->setMass(0.2f);
-				p->setVel(dir * 35);
-				p->setAcc({ 0, -1.0f, 0 });
-				p->setD(0.99f);
-				p->setColor({ 0.2, 0.2, 0.2, 1});
-				break;
-			case ARTILLERY:
-				p->setMass(200.0f);
-				p->setVel(dir * 30);
-				p->setAcc({ 0, -20.0f, 0 });
-				p->setD(0.99f);
-				p->setColor({ 0, 0, 0, 1 });
-				break;
-			case FIREBALL:
-				p->setMass(1.0f);
-				p->setVel(dir * 10);
-				p->setAcc({ 0, 0.6f, 0 });
-				p->setD(0.9f);
-				p->setColor({ 1, 0, 0, 1 });
-				break;
-			case LASER:
-				p->setMass(0.1f);
-				p->setVel(dir * 100);
-				p->setD(0.99f);
-				p->setColor({ 0, 0, 1, 1 });
-				break;
-			}
-		break;
-		}	
-	case 'Z':
-		pType = PISTOL;
-		break;
-	case 'X':
-		pType = ARTILLERY;
-		break;
-	case 'C':
-		pType = FIREBALL;
-		break;
-	case 'V':
-		pType = LASER;
-		break;
-	}
+	scene->s_keyPress(toupper(key));
+	changeScene(key);
 }
 
 void onCollision(physx::PxActor* actor1, physx::PxActor* actor2)
@@ -199,12 +144,6 @@ int main(int, const char*const*)
 		stepPhysics(false);
 	cleanupPhysics(false);
 #endif
-
-	for (auto p : particles)
-		delete p;
-
-	delete suelo;
-	delete diana;
 
 	return 0;
 }

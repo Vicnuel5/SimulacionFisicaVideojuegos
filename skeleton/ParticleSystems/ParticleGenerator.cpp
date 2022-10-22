@@ -4,7 +4,8 @@
 
 ParticleGenerator::ParticleGenerator() 
 {
-	
+	std::random_device rd{};
+	gen = std::mt19937(rd());
 }
 
 ParticleGenerator::~ParticleGenerator()
@@ -28,6 +29,8 @@ void ParticleGenerator::integrate(double t)
 	for (auto pg : particle_generators)
 		pg->integrate(t);
 
-	pIntegrate(t);
+	p_Integrate(t);
+	p_Refresh();
 }
+
 

@@ -36,11 +36,11 @@ Particle::~Particle()
 
 void Particle::integrate(double t)
 {
-	pose = physx::PxTransform(pose.p.x + vel.x * t, pose.p.y + vel.y * t, pose.p.z + vel.z * t);
-
 	vel += acc * t;
 
 	vel *= powf(d, t);
+
+	pose = physx::PxTransform(pose.p.x + vel.x * t, pose.p.y + vel.y * t, pose.p.z + vel.z * t);
 }
 
 void Particle::setPos(Vector3 newPos)
@@ -63,7 +63,7 @@ void Particle::setAcc(Vector3 newAcc)
 	acc = newAcc;
 }
 
-void Particle::setD(float newDump)
+void Particle::setDump(float newDump)
 {
 	d = newDump;
 }
