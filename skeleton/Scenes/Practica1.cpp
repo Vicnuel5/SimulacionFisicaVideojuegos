@@ -16,6 +16,8 @@ void Practica1::s_clean()
 	for (auto p : particles)
 		delete p;
 
+	particles.clear();
+
 	delete suelo;
 	delete diana;
 }

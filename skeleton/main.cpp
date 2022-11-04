@@ -9,12 +9,7 @@
 #include "RenderUtils.hpp"
 #include "callbacks.hpp"
 
-#include <iostream>
-
-#include "Scenes/Scene.h"
-#include "Scenes/Practica1.h"
-#include "Scenes/Practica2.h"
-
+#include "Scenes/ScenesInclude.h"
 
 using namespace physx;
 
@@ -60,7 +55,7 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
-	scene = new Practica2_2();
+	scene = new Practica3();
 	scene->s_init();
 }
 
@@ -113,6 +108,7 @@ void changeScene(unsigned char n) {
 	case '2': createScene(new Practica2_1()); break;
 	case '3': createScene(new Practica2_2()); break;
 	case '4': createScene(new Practica2_3()); break;
+	case '5': createScene(new Practica3()); break;
 	}
 }
 

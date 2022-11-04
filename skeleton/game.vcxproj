@@ -254,6 +254,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="callbacks.cpp" />
+    <ClCompile Include="Forces\GravityForceGenerator.cpp" />
+    <ClCompile Include="Scenes\Practica3.cpp" />
     <ClCompile Include="Scenes\Practica2.cpp" />
     <ClCompile Include="ParticleSystems\Fireworks.cpp" />
     <ClCompile Include="ParticleSystems\Geometric.cpp" />
@@ -269,6 +271,10 @@
   <ItemGroup>
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="core.hpp" />
+    <ClInclude Include="Forces\ForceGenerator.h" />
+    <ClInclude Include="Forces\ParticleForzeRegistry.h" />
+    <ClInclude Include="Forces\GravityForceGenerator.h" />
+    <ClInclude Include="Scenes\Practica3.h" />
     <ClInclude Include="Scenes\Practica2.h" />
     <ClInclude Include="ParticleSystems\Fireworks.h" />
     <ClInclude Include="ParticleSystems\Geometric.h" />
@@ -280,6 +286,7 @@
     <ClInclude Include="Render\Render.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\Practica1.h" />
+    <ClInclude Include="Scenes\ScenesInclude.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

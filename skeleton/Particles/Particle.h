@@ -24,8 +24,11 @@ public:
 	void setDump(float newDump);
 
 	void setMass(float newMass);
+	float getMass();
 
 	void setColor(Vector4 color);
+
+	void addForce(const Vector3& f);
 
 private:
 	Vector3 vel;
@@ -34,5 +37,10 @@ private:
 	float mInv;
 	physx::PxTransform pose;
 	RenderItem* renderItem;
+
+	Vector3 force;
+
+	void clearForce();
+	
 };
 

@@ -53,5 +53,5 @@ void Practica2_2::s_keyPress(unsigned char key)
 
 void Practica2_3::s_init()
 {
-	particleSystems.push_back(new Geometric({ 0,20,0 }, 10, 0, 4, 7));
+	particleSystems.push_back(new Geometric({ 0,20,0 }, 10, 0, 3, 10));
 }
