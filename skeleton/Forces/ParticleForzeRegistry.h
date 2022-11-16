@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <vector>
 #include "ForceGenerator.h"
 
 typedef std::pair<ForceGenerator*, Particle*> FRPair;
@@ -13,10 +14,35 @@ public:
 		}
 	}
 
-	void addRegistry(ForceGenerator* fg, Particle* p) {
-		insert({ fg, p });
+	void addRegistry(ForceGenerator* gravity, Particle* p) {
+		insert({ gravity, p });
 	}
 
+	void addRegistry(std::vector<ForceGenerator*> gravity, Particle* p) {
+		for (auto i : gravity) {
+			insert({ i, p });
+		}	
+	}
+	 
 	void deleteParticleRegistry(Particle* p) {
+		for (auto it = begin(); it != end(); ) {
+			if (it->second == p) {
+				auto aux = it;
+				it++;
+				erase(aux);
+			}
+			else it++;
+		}
+	}
+
+	void deleteForceRegistry(ForceGenerator* gravity) {
+		for (auto it = begin(); it != end(); ) {
+			if (it->first == gravity) {
+				auto aux = it;
+				it++;
+				erase(aux);
+			}
+			else it++;
+		}
 	}
 };

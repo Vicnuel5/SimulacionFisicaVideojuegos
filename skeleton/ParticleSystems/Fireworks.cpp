@@ -59,7 +59,7 @@ std::list<Particle*> Fireworks::generateParticles() {
 		Particle* p = new Particle(std_dev_pos);
 		p->setVel({ std_dev_vel.x * dVelXY(gen), dVelY(gen), std_dev_vel.z * dVelXY(gen) });
 		p->setAcc({ 0, -20, 0 });
-		p->setMass(1);
+		p->setInvMass(1);
 		p->setDump(0.95);
 		p->setColor(coulour);
 		l.push_back(p);

@@ -3,7 +3,12 @@
 #include "../Particles/Particle.h"
 
 Fuente::Fuente(Vector3 std_dev_pos, Vector3 std_dev_vel, Vector3 std_dev_acc) :
-	ParticleGenerator(), cont(0), std_dev_pos(std_dev_pos), std_dev_vel(std_dev_vel), std_dev_acc(std_dev_acc)
+	ParticleGenerator(), cont(0), std_dev_pos(std_dev_pos), std_dev_vel(std_dev_vel), std_dev_acc(std_dev_acc), diePos(0)
+{
+}
+
+Fuente::Fuente(Vector3 std_dev_pos, Vector3 std_dev_vel, Vector3 std_dev_acc, double diePos) :
+	ParticleGenerator(), cont(0), std_dev_pos(std_dev_pos), std_dev_vel(std_dev_vel), std_dev_acc(std_dev_acc), diePos(diePos) 
 {
 }
 
@@ -20,6 +25,7 @@ void Fuente::p_Integrate(double t)
 		p->setColor({ 0, 0, 1, 1 });
 		
 		particles.push_back(p);
+		forces.addRegistry(force_generators, p);
 
 		cont = 0;
 	}
@@ -27,15 +33,19 @@ void Fuente::p_Integrate(double t)
 
 void Fuente::p_Refresh()
 {
-	for (auto p = particles.begin(); p != particles.end(); ) {
-		if ((*p)->getPos().y < 0) {
-			auto aux = p;
-			p++;
-			delete* aux;
-			particles.erase(aux);
+	for (auto it = particles.begin(); it != particles.end(); ) {
+		if ((*it)->getPos().y < diePos) {
+			auto aux = it;
+			it++;	
+			forces.deleteParticleRegistry(*aux);
+			delete *aux;
+			particles.erase(aux);					
 		}
-		else p++;
+		else it++;
 	}
 }
+
+
+
 
 

@@ -50,28 +50,28 @@ void Practica1::s_keyPress(unsigned char key)
 		switch (pType)
 		{
 		case PISTOL:
-			p->setMass(0.2f);
+			p->setInvMass(0.2f);
 			p->setVel(dir * 35);
 			p->setAcc({ 0, -1.0f, 0 });
 			p->setDump(0.99f);
 			p->setColor({ 0.2, 0.2, 0.2, 1 });
 			break;
 		case ARTILLERY:
-			p->setMass(200.0f);
+			p->setInvMass(200.0f);
 			p->setVel(dir * 30);
 			p->setAcc({ 0, -20.0f, 0 });
 			p->setDump(0.99f);
 			p->setColor({ 0, 0, 0, 1 });
 			break;
 		case FIREBALL:
-			p->setMass(1.0f);
+			p->setInvMass(1.0f);
 			p->setVel(dir * 10);
 			p->setAcc({ 0, 0.6f, 0 });
 			p->setDump(0.9f);
 			p->setColor({ 1, 0, 0, 1 });
 			break;
 		case LASER:
-			p->setMass(0.1f);
+			p->setInvMass(0.1f);
 			p->setVel(dir * 100);
 			p->setDump(0.99f);
 			p->setColor({ 0, 0, 1, 1 });

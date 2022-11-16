@@ -19,6 +19,9 @@
     <ClCompile Include="Scenes\Practica2.cpp" />
     <ClCompile Include="Forces\GravityForceGenerator.cpp" />
     <ClCompile Include="Scenes\Practica3.cpp" />
+    <ClCompile Include="Forces\WindForceGenerator.cpp" />
+    <ClCompile Include="Forces\WhirlwindForceGenerator.cpp" />
+    <ClCompile Include="Forces\ExplosionForceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -43,6 +46,9 @@
     <ClInclude Include="Forces\GravityForceGenerator.h" />
     <ClInclude Include="Scenes\Practica3.h" />
     <ClInclude Include="Scenes\ScenesInclude.h" />
+    <ClInclude Include="Forces\WindForceGenerator.h" />
+    <ClInclude Include="Forces\WhirlwindForceGenerator.h" />
+    <ClInclude Include="Forces\ExplosionForceGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

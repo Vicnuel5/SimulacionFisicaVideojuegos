@@ -7,8 +7,8 @@ GravityForceGenerator::GravityForceGenerator(const Vector3& g)
 
 void GravityForceGenerator::updateForce(Particle* particle, double t)
 {
-	if (fabs(particle->getMass()) < 1e-10)
+	if (fabs(particle->getInvMass()) < 1e-10)
 		return;
 
-	particle->addForce(gravity);
+	particle->addForce(gravity * particle->getMass());
 }

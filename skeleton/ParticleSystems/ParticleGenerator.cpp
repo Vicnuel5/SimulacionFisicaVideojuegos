@@ -19,10 +19,18 @@ ParticleGenerator::~ParticleGenerator()
 		delete pg;
 
 	particle_generators.clear();
+
+
+	for (auto fg : force_generators)
+		delete fg;
+
+	forces.clear();
 }
 
 void ParticleGenerator::integrate(double t)
 {
+	forces.updteForces(0);
+
 	for (auto p : particles)
 		p->integrate(t);
 
@@ -31,6 +39,10 @@ void ParticleGenerator::integrate(double t)
 
 	p_Integrate(t);
 	p_Refresh();
+}
+
+void ParticleGenerator::addForce(ForceGenerator* fg) {
+	force_generators.push_back(fg);
 }
 
 

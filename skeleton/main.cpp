@@ -55,7 +55,7 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
-	scene = new Practica3();
+	scene = new Practica3_4();
 	scene->s_init();
 }
 
@@ -109,6 +109,9 @@ void changeScene(unsigned char n) {
 	case '3': createScene(new Practica2_2()); break;
 	case '4': createScene(new Practica2_3()); break;
 	case '5': createScene(new Practica3()); break;
+	case '6': createScene(new Practica3_2()); break;
+	case '7': createScene(new Practica3_3()); break;
+	case '8': createScene(new Practica3_4()); break;
 	}
 }
 
