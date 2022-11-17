@@ -1,9 +1,9 @@
 #pragma once
 
-#include "ForceGenerator.h"
+#include "DragGenerator.h" 
 #include "../core.hpp"
 
-class WindForceGenerator : public ForceGenerator
+class WindForceGenerator : public DragGenerator
 {
 	virtual Vector3 getVel(Vector3 pPos);
 

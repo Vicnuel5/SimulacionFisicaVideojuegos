@@ -1,7 +1,7 @@
 #include "WindForceGenerator.h"
 
 WindForceGenerator::WindForceGenerator(const Vector3& vel, const Vector3& pos, double area) :
-	windVel(vel), windPos(pos), radius(area)
+	DragGenerator(0.003, 0.001), windVel(vel), windPos(pos), radius(area)
 {
 
 	windArea = new RenderItem(CreateShape(physx::PxSphereGeometry(area)), new physx::PxTransform(pos.x, pos.y, pos.z), { 0, 0, 1, 0 });
@@ -22,9 +22,9 @@ void WindForceGenerator::updateForce(Particle* particle, double t)
 	}
 
 
-	double k1 = 0.003, k2 = 0.001;
+	//double k1 = 0.003, k2 = 0.001;
 	Vector3 v = getVel(particle->getPos()) - particle->getVel();
-	particle->addForce(k1 * v + k2 * v.magnitude() * v);
+	particle->addForce(_k1 * v + _k2 * v.magnitude() * v);
 }
 
 Vector3 WindForceGenerator::getVel(Vector3 pPos) {

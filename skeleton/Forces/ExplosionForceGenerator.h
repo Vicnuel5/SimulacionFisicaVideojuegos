@@ -18,4 +18,5 @@ protected:
 	Vector3 expPos;
 	double radius;
 	double duration;
+	double n;
 };

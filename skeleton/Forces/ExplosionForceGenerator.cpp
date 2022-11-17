@@ -3,7 +3,7 @@
 #include <iostream>
 
 ExplosionForceGenerator::ExplosionForceGenerator(const Vector3& pos, double area, double duration) :
-	expPos(pos), radius(area), duration(duration)
+	expPos(pos), radius(area), duration(duration), n(10000)
 {
 	t = duration;
 }
@@ -21,9 +21,10 @@ void ExplosionForceGenerator::updateForce(Particle* particle, double dt) {
 	if ((particle->getPos() - expPos).magnitudeSquared() > radius * radius) {
 		return;
 	}
+	n += dt;
 
-	double K = 8000, n = 1;
-	particle->addForce((K / (radius * radius)) * (particle->getPos() - expPos) * pow(2.71828, -((t / 1000.0) / n)));
+	double K = 100000;
+	particle->addForce((K / (radius * radius)) * (particle->getPos() - expPos) * pow(2.71828, -((dt / n))));
 }
 
 void ExplosionForceGenerator::resetExplsion() {

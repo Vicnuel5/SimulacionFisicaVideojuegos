@@ -43,7 +43,9 @@ void Practica3_2::s_init()
 	fuente = new Fuente({ 0, 0, 0 }, { 0, 30, 0 }, { 0, -9.8, 0 }, -1000);
 	fuente->addForce(new WindForceGenerator({ 100, 0, 100 }, { 0, 0, 0 }, 50));
 	fuente->addForce(new WindForceGenerator({ 0, 250, 0 }, { 50, 50, 50 }, 50));
-	fuente->addForce(new WhirlwindForceGenerator({ 150, -200, 150 }, 150, 6));
+	auto f = new WhirlwindForceGenerator({ 150, -200, 150 }, 150, 6);
+	//f->setDrag(0, 0.001);
+	fuente->addForce(f);
 }
 
 void Practica3_2::s_integrate(float t)
@@ -60,6 +62,7 @@ void Practica3_3::s_init()
 {
 	gravity = new GravityForceGenerator({ 0, -9.8, 0 });
 	torbellino = new WhirlwindForceGenerator({ 0, 0, 0 }, 500, 1.5);
+	torbellino->setDrag(0.001, 0.001);
 
 	for (float i = -50; i < 50; i += 2) {
 		for (float k = -50; k < 50; k += 2) {
