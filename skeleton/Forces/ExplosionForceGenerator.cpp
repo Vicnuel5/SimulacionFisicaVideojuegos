@@ -26,11 +26,12 @@ void ExplosionForceGenerator::updateForce(Particle* particle, double dt) {
 	if (fabs(particle->getInvMass()) < 1e-10)
 		return;
 
-	if ((particle->getPos() - expPos).magnitudeSquared() > r * r) {
+	double sqrDist = (particle->getPos() - expPos).magnitudeSquared();
+	if (sqrDist > r * r) {
 		return;
 	}
 
-	particle->addForce((K / (r * r)) * (particle->getPos() - expPos) * exp(-t/n));
+	particle->addForce((K / sqrDist) * (particle->getPos() - expPos) * exp(-t/n));
 }
 
 void ExplosionForceGenerator::resetExplsion() {

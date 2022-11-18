@@ -99,7 +99,7 @@ void Practica3_3::s_integrate(float t)
 
 void Practica3_4::s_init()
 {
-	explosion = new ExplosionForceGenerator({ 0,0,0 });
+	explosion = new ExplosionForceGenerator({ 20,0,-20 });
 
 	for (float i = -10; i < 10; i += 2) {
 		for (float j = -10; j < 10; j += 2) {
