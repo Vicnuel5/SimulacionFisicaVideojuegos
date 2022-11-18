@@ -21,8 +21,6 @@ void WindForceGenerator::updateForce(Particle* particle, double t)
 		return;
 	}
 
-
-	//double k1 = 0.003, k2 = 0.001;
 	Vector3 v = getVel(particle->getPos()) - particle->getVel();
 	particle->addForce(_k1 * v + _k2 * v.magnitude() * v);
 }

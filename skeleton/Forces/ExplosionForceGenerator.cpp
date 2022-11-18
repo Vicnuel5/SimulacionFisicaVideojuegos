@@ -2,32 +2,37 @@
 
 #include <iostream>
 
-ExplosionForceGenerator::ExplosionForceGenerator(const Vector3& pos, double area, double duration) :
-	expPos(pos), radius(area), duration(duration), n(10000)
+ExplosionForceGenerator::ExplosionForceGenerator(const Vector3& pos) :
+	expPos(pos), vExp(0.343), K(10000), n(3000), active(false)
 {
-	t = duration;
+	t = 0;
+}
+
+ExplosionForceGenerator::ExplosionForceGenerator(const Vector3& pos, double vExp, double K, double n) :
+	expPos(pos), vExp(vExp), K(K), n(n), active(false)
+{
+	t = 0;
 }
 
 void ExplosionForceGenerator::updateForce(Particle* particle, double dt) {
 
-	if (t >= duration) {
+	if (!active) {
 		return;
 	}
+
 	t += dt;
+	double r = vExp * t;
 
 	if (fabs(particle->getInvMass()) < 1e-10)
 		return;
 
-	if ((particle->getPos() - expPos).magnitudeSquared() > radius * radius) {
+	if ((particle->getPos() - expPos).magnitudeSquared() > r * r) {
 		return;
 	}
-	n += dt;
 
-	double K = 100000;
-	particle->addForce((K / (radius * radius)) * (particle->getPos() - expPos) * pow(2.71828, -((dt / n))));
+	particle->addForce((K / (r * r)) * (particle->getPos() - expPos) * exp(-t/n));
 }
 
 void ExplosionForceGenerator::resetExplsion() {
-	if (t >= duration)
-		t = 0;
+	active = true;
 }

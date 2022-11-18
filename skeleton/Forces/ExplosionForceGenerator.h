@@ -7,7 +7,8 @@ class ExplosionForceGenerator : public ForceGenerator
 {
 
 public:
-	ExplosionForceGenerator(const Vector3& pos, double area, double duration);
+	ExplosionForceGenerator(const Vector3& pos);
+	ExplosionForceGenerator(const Vector3& pos, double vExp, double K, double n);
 	virtual ~ExplosionForceGenerator() = default;
 
 	virtual void updateForce(Particle* particle, double t);
@@ -16,7 +17,8 @@ public:
 
 protected:
 	Vector3 expPos;
-	double radius;
-	double duration;
+	double vExp;
+	double K;
 	double n;
+	float active;
 };

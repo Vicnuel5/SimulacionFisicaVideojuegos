@@ -61,11 +61,11 @@ void Practica3_2::s_clean()
 void Practica3_3::s_init()
 {
 	gravity = new GravityForceGenerator({ 0, -9.8, 0 });
-	torbellino = new WhirlwindForceGenerator({ 0, 0, 0 }, 500, 1.5);
+	torbellino = new WhirlwindForceGenerator({ 0, 0, 0 }, 150, 1.5);
 	torbellino->setDrag(0.001, 0.001);
 
-	for (float i = -50; i < 50; i += 2) {
-		for (float k = -50; k < 50; k += 2) {
+	for (float i = -30; i < 30; i += 2) {
+		for (float k = -30; k < 30; k += 2) {
 			Particle* p = new Particle({ i, 0, k });
 			p->setMass(1);
 			p->setDump(0.95);
@@ -99,7 +99,7 @@ void Practica3_3::s_integrate(float t)
 
 void Practica3_4::s_init()
 {
-	explosion = new ExplosionForceGenerator({ 20,0,-20 }, 40, 4000);
+	explosion = new ExplosionForceGenerator({ 0,0,0 });
 
 	for (float i = -10; i < 10; i += 2) {
 		for (float j = -10; j < 10; j += 2) {
