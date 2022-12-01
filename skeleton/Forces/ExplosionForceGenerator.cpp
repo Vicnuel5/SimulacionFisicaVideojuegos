@@ -14,7 +14,7 @@ ExplosionForceGenerator::ExplosionForceGenerator(const Vector3& pos, double vExp
 	t = 0;
 }
 
-void ExplosionForceGenerator::updateForce(Particle* particle, double dt) {
+void ExplosionForceGenerator::updateForce(Particle* myParticle, double dt) {
 
 	if (!active) {
 		return;
@@ -23,15 +23,15 @@ void ExplosionForceGenerator::updateForce(Particle* particle, double dt) {
 	t += dt;
 	double r = vExp * t;
 
-	if (fabs(particle->getInvMass()) < 1e-10)
+	if (fabs(myParticle->getInvMass()) < 1e-10)
 		return;
 
-	double sqrDist = (particle->getPos() - expPos).magnitudeSquared();
+	double sqrDist = (myParticle->getPos() - expPos).magnitudeSquared();
 	if (sqrDist > r * r) {
 		return;
 	}
 
-	particle->addForce((K / sqrDist) * (particle->getPos() - expPos) * exp(-t/n));
+	myParticle->addForce((K / sqrDist) * (myParticle->getPos() - expPos) * exp(-t/n));
 }
 
 void ExplosionForceGenerator::resetExplsion() {

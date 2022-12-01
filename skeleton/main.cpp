@@ -104,7 +104,7 @@ void changeScene(unsigned char n) {
 
 	switch (n)
 	{
-	case '1': createScene(new Practica1()); break;
+	//case '1': createScene(new Practica1()); break;
 	case '2': createScene(new Practica2_1()); break;
 	case '3': createScene(new Practica2_2()); break;
 	case '4': createScene(new Practica2_3()); break;
@@ -112,6 +112,9 @@ void changeScene(unsigned char n) {
 	case '6': createScene(new Practica3_2()); break;
 	case '7': createScene(new Practica3_3()); break;
 	case '8': createScene(new Practica3_4()); break;
+	case '9': createScene(new Practica4()); break;
+	case '0': createScene(new Practica4_2()); break;
+	case '1': createScene(new Practica4_3()); break;
 	}
 }
 

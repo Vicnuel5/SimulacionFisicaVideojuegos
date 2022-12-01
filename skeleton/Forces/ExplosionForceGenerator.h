@@ -11,7 +11,7 @@ public:
 	ExplosionForceGenerator(const Vector3& pos, double vExp, double K, double n);
 	virtual ~ExplosionForceGenerator() = default;
 
-	virtual void updateForce(Particle* particle, double t);
+	virtual void updateForce(Particle* myParticle, double t);
 
 	void resetExplsion();
 

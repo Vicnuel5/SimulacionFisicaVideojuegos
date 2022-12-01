@@ -8,7 +8,7 @@ class GravityForceGenerator : public ForceGenerator
 public:
 	GravityForceGenerator(const Vector3& g);
 
-	virtual void updateForce(Particle* particle, double t);
+	virtual void updateForce(Particle* myParticle, double t);
 
 	inline void setGravity(Vector3 g) { gravity = g; }
 

@@ -10,7 +10,7 @@ public:
 
 	virtual ~ForceGenerator() = default;
 
-	virtual void updateForce(Particle* particle, double duration) = 0;
+	virtual void updateForce(Particle* myParticle, double duration) = 0;
 	std::string name;
 	double t = -1e10;
 };

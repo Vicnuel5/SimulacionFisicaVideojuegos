@@ -253,11 +253,16 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Forces\FlotationForceGenerator.cpp" />
+    <ClCompile Include="Forces\AnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="Forces\DragGenerator.cpp" />
     <ClCompile Include="Forces\ExplosionForceGenerator.cpp" />
     <ClCompile Include="Forces\GravityForceGenerator.cpp" />
     <ClCompile Include="Forces\WhirlwindForceGenerator.cpp" />
+    <ClCompile Include="Forces\QuayFoceGenerator.cpp" />
+    <ClCompile Include="Forces\ParticleBungeeForceGenerator.cpp" />
+    <ClCompile Include="Scenes\Practica4.cpp" />
     <ClCompile Include="Scenes\Practica3.cpp" />
     <ClCompile Include="Scenes\Practica2.cpp" />
     <ClCompile Include="ParticleSystems\Fireworks.cpp" />
@@ -273,6 +278,8 @@
     <ClCompile Include="Forces\WindForceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Forces\FlotationForceGenerator.h" />
+    <ClInclude Include="Forces\AnchoredSpringForceGenerator.h" />
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="Forces\DragGenerator.h" />
@@ -280,6 +287,9 @@
     <ClInclude Include="Forces\ForceGenerator.h" />
     <ClInclude Include="Forces\ParticleForzeRegistry.h" />
     <ClInclude Include="Forces\GravityForceGenerator.h" />
+    <ClInclude Include="Forces\QuayFoceGenerator.h" />
+    <ClInclude Include="Forces\ParticleBungeeForceGenerator.h" />
+    <ClInclude Include="Scenes\Practica4.h" />
     <ClInclude Include="Scenes\Practica3.h" />
     <ClInclude Include="Scenes\Practica2.h" />
     <ClInclude Include="ParticleSystems\Fireworks.h" />

@@ -25,7 +25,7 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, float D, float InvMass
 }
 
 Particle::Particle(Vector3 Pos, physx::PxShape* shape) :
-	vel(Vector3()), acc(Vector3()), d(1), invMass(0), force({ 0, 0, 0 })
+	vel({0,0,0}), acc({0,0,0}), d(1), invMass(0), force({0, 0, 0})
 {
 	pose = physx::PxTransform(Pos.x, Pos.y, Pos.z);
 	renderItem = new RenderItem(shape, &pose, {});
@@ -40,14 +40,19 @@ void Particle::integrate(double t)
 {
 	if (invMass <= 0.0f) return;
 
+	
+
 	Vector3 totalAcceleration = acc; 
 	totalAcceleration += force * invMass;
 
 	vel += totalAcceleration * t;
 
+	
+
 	vel *= powf(d, t);
 
 	pose = physx::PxTransform(pose.p.x + vel.x * t, pose.p.y + vel.y * t, pose.p.z + vel.z * t);
+	
 
 	clearForce();
 }

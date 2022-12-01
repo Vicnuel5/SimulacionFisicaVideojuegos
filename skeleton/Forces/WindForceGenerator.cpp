@@ -12,17 +12,17 @@ WindForceGenerator::~WindForceGenerator()
 	DeregisterRenderItem(windArea);
 }
 
-void WindForceGenerator::updateForce(Particle* particle, double t)
+void WindForceGenerator::updateForce(Particle* myParticle, double t)
 {
-	if (fabs(particle->getInvMass()) < 1e-10)
+	if (fabs(myParticle->getInvMass()) < 1e-10)
 		return;
 
-	if ((particle->getPos() - windPos).magnitudeSquared() > radius * radius) {
+	if ((myParticle->getPos() - windPos).magnitudeSquared() > radius * radius) {
 		return;
 	}
 
-	Vector3 v = getVel(particle->getPos()) - particle->getVel();
-	particle->addForce(_k1 * v + _k2 * v.magnitude() * v);
+	Vector3 v = getVel(myParticle->getPos()) - myParticle->getVel();
+	myParticle->addForce(_k1 * v + _k2 * v.magnitude() * v);
 }
 
 Vector3 WindForceGenerator::getVel(Vector3 pPos) {

@@ -11,7 +11,7 @@ public:
 	WindForceGenerator(const Vector3& vel, const Vector3& pos, double area);
 	virtual ~WindForceGenerator();
 
-	virtual void updateForce(Particle* particle, double t);
+	virtual void updateForce(Particle* myParticle, double t);
 
 protected:
 	Vector3 windVel;

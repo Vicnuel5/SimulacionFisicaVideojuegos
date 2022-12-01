@@ -5,10 +5,10 @@ GravityForceGenerator::GravityForceGenerator(const Vector3& g)
 {
 }
 
-void GravityForceGenerator::updateForce(Particle* particle, double t)
+void GravityForceGenerator::updateForce(Particle* myParticle, double t)
 {
-	if (fabs(particle->getInvMass()) < 1e-10)
+	if (fabs(myParticle->getInvMass()) < 1e-10)
 		return;
 
-	particle->addForce(gravity * particle->getMass());
+	myParticle->addForce(gravity * myParticle->getMass());
 }
