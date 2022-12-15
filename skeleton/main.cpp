@@ -29,6 +29,7 @@ PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
 Scene* scene;
+bool lock = false;
 
 
 // Initialize physics engine
@@ -56,11 +57,10 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 
 	
-
-
-
 	scene = new Practica5(gPhysics, gScene);
-	scene->s_init();
+	lock = true;
+	//scene = new Practica1();
+	scene->s_init();	
 }
 
 
@@ -93,11 +93,10 @@ void cleanupPhysics(bool interactive)
 	transport->release();
 	
 	gFoundation->release();
-
-	scene->s_clean();
 }
 
 void createScene(Scene* newScene) {
+	
 	scene->s_clean();
 	delete scene;
 	scene = newScene;
@@ -106,19 +105,21 @@ void createScene(Scene* newScene) {
 
 void changeScene(unsigned char n) {
 
-	switch (n)
-	{
-	//case '1': createScene(new Practica1()); break;
-	case '2': createScene(new Practica2_1()); break;
-	case '3': createScene(new Practica2_2()); break;
-	case '4': createScene(new Practica2_3()); break;
-	case '5': createScene(new Practica3()); break;
-	case '6': createScene(new Practica3_2()); break;
-	case '7': createScene(new Practica3_3()); break;
-	case '8': createScene(new Practica3_4()); break;
-	case '9': createScene(new Practica4()); break;
-	case '0': createScene(new Practica4_2()); break;
-	case '1': createScene(new Practica4_3()); break;
+	if (!lock) {
+		switch (n)
+		{
+			//case '1': createScene(new Practica1()); break;
+			case '2': createScene(new Practica2_1()); break;
+			case '3': createScene(new Practica2_2()); break;
+			case '4': createScene(new Practica2_3()); break;
+			case '5': createScene(new Practica3()); break;
+			case '6': createScene(new Practica3_2()); break;
+			case '7': createScene(new Practica3_3()); break;
+			case '8': createScene(new Practica3_4()); break;
+			case '9': createScene(new Practica4()); break;
+			case '0': createScene(new Practica4_2()); break;
+			case '1': createScene(new Practica4_3()); break;
+		}
 	}
 }
 

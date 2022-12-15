@@ -45,15 +45,4 @@ public:
 			else it++;
 		}
 	}
-
-	//void deleteAll() {
-	//	for (auto it = begin(); it != end(); ) {
-	//		if (it->first != nullptr) {
-	//			delete it->first;
-	//			it->first = nullptr;
-
-	//		}
-	//		else it++;
-	//	}
-	//}
 };

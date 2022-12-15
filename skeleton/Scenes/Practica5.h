@@ -1,8 +1,16 @@
 #pragma once
 
 #include "Scene.h"
+#include "../PxForces/PxParticleForceRegistry.h"
 
 #include <PxPhysicsAPI.h>
+
+#include <list>
+
+class PxGravityFG;
+class PxWindFG;
+
+class RenderItem;
 
 class Practica5 : public Scene
 {
@@ -20,5 +28,13 @@ public:
 protected:
 	physx::PxPhysics* myPhysics;
 	physx::PxScene* myScene;
+
+	PxGravityFG* g;
+	PxWindFG* w;
+
+	PxParticleForzeRegistry forces;
+
+	std::list<RenderItem*> items;
+
 };
 

@@ -29,6 +29,8 @@
     <ClCompile Include="Forces\FlotationForceGenerator.cpp" />
     <ClCompile Include="Forces\ParticleBungeeForceGenerator.cpp" />
     <ClCompile Include="Scenes\Practica5.cpp" />
+    <ClCompile Include="PxForces\PxGravityFG.cpp" />
+    <ClCompile Include="PxForces\PxWindFG.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -63,6 +65,10 @@
     <ClInclude Include="Forces\FlotationForceGenerator.h" />
     <ClInclude Include="Forces\ParticleBungeeForceGenerator.h" />
     <ClInclude Include="Scenes\Practica5.h" />
+    <ClInclude Include="PxForces\PxParticleForceRegistry.h" />
+    <ClInclude Include="PxForces\PxForceGenerator.h" />
+    <ClInclude Include="PxForces\PxGravityFG.h" />
+    <ClInclude Include="PxForces\PxWindFG.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

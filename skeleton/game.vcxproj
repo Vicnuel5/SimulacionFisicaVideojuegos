@@ -262,6 +262,8 @@
     <ClCompile Include="Forces\WhirlwindForceGenerator.cpp" />
     <ClCompile Include="Forces\QuayFoceGenerator.cpp" />
     <ClCompile Include="Forces\ParticleBungeeForceGenerator.cpp" />
+    <ClCompile Include="PxForces\PxGravityFG.cpp" />
+    <ClCompile Include="PxForces\PxWindFG.cpp" />
     <ClCompile Include="Scenes\Practica5.cpp" />
     <ClCompile Include="Scenes\Practica4.cpp" />
     <ClCompile Include="Scenes\Practica3.cpp" />
@@ -290,6 +292,10 @@
     <ClInclude Include="Forces\GravityForceGenerator.h" />
     <ClInclude Include="Forces\QuayFoceGenerator.h" />
     <ClInclude Include="Forces\ParticleBungeeForceGenerator.h" />
+    <ClInclude Include="PxForces\PxForceGenerator.h" />
+    <ClInclude Include="PxForces\PxParticleForceRegistry.h" />
+    <ClInclude Include="PxForces\PxGravityFG.h" />
+    <ClInclude Include="PxForces\PxWindFG.h" />
     <ClInclude Include="Scenes\Practica5.h" />
     <ClInclude Include="Scenes\Practica4.h" />
     <ClInclude Include="Scenes\Practica3.h" />
