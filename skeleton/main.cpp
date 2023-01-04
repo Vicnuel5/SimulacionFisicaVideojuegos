@@ -11,6 +11,8 @@
 
 #include "Scenes/ScenesInclude.h"
 
+#define CAMERA_Y 15
+
 using namespace physx;
 
 PxDefaultAllocator		gAllocator;
@@ -49,7 +51,7 @@ void initPhysics(bool interactive)
 
 	// For Solid Rigids +++++++++++++++++++++++++++++++++++++
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-	sceneDesc.gravity = PxVec3(0.0f, -9.8f, 0.0f);
+	sceneDesc.gravity = PxVec3(0.0f, -98.0f, 0.0f);
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = contactReportFilterShader;
@@ -57,7 +59,7 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 
 	
-	scene = new Practica5(gPhysics, gScene);
+	scene = new ProyectoFinal(gPhysics, gScene);
 	lock = true;
 	//scene = new Practica1();
 	scene->s_init();	

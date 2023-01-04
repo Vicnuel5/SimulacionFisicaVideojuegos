@@ -31,6 +31,16 @@
     <ClCompile Include="Scenes\Practica5.cpp" />
     <ClCompile Include="PxForces\PxGravityFG.cpp" />
     <ClCompile Include="PxForces\PxWindFG.cpp" />
+    <ClCompile Include="Scenes\ProyectoFinal.cpp" />
+    <ClCompile Include="PxParticles\PxParticle.cpp" />
+    <ClCompile Include="PxParticles\Puerta.cpp" />
+    <ClCompile Include="PxParticles\PxRigid.cpp" />
+    <ClCompile Include="PxParticles\AllRigids.cpp" />
+    <ClCompile Include="PxParticles\Sarten.cpp" />
+    <ClCompile Include="PxParticles\Aceite.cpp" />
+    <ClCompile Include="PxParticleSystems\PxParticleGenerator.cpp" />
+    <ClCompile Include="PxParticleSystems\OilSystem.cpp" />
+    <ClCompile Include="PxParticles\Vitro.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -69,6 +79,18 @@
     <ClInclude Include="PxForces\PxForceGenerator.h" />
     <ClInclude Include="PxForces\PxGravityFG.h" />
     <ClInclude Include="PxForces\PxWindFG.h" />
+    <ClInclude Include="Scenes\ProyectoFinal.h" />
+    <ClInclude Include="PxParticles\PxParticle.h" />
+    <ClInclude Include="PxParticles\PxPickableParticle.h" />
+    <ClInclude Include="PxParticles\Puerta.h" />
+    <ClInclude Include="PxParticles\PxRigid.h" />
+    <ClInclude Include="PxParticles\AllRigids.h" />
+    <ClInclude Include="PxParticles\Sarten.h" />
+    <ClInclude Include="PxParticles\Aceite.h" />
+    <ClInclude Include="PxParticleSystems\PxParticleGenerator.h" />
+    <ClInclude Include="PxParticleSystems\OilSystem.h" />
+    <ClInclude Include="CollitionCallback.h" />
+    <ClInclude Include="PxParticles\Vitro.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

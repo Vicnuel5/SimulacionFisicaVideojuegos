@@ -57,6 +57,6 @@ void renderActors(physx::PxRigidActor** actors, const physx::PxU32 numActors, bo
 void finishRender();
 }
 
-#define MAX_NUM_ACTOR_SHAPES 128
+#define MAX_NUM_ACTOR_SHAPES 256
 
 #endif //PHYSX_SNIPPET_RENDER_H

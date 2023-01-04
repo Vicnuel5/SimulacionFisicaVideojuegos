@@ -27,11 +27,16 @@
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
-
+#include <iostream>
+using namespace std;
 
 #include "Camera.h"
 #include <ctype.h>
 #include "foundation/PxMat33.h"
+
+#include <windows.h>
+#include <glut.h>
+
 
 using namespace physx;
 
@@ -48,10 +53,10 @@ Camera::Camera(const PxVec3& eye, const PxVec3& dir)
 
 void Camera::handleMouse(int button, int state, int x, int y)
 {
-	PX_UNUSED(state);
-	PX_UNUSED(button);
+
+	click[button] = state;
 	mMouseX = x;
-	mMouseY = y;
+	mMouseY = y;	
 }
 
 bool Camera::handleKey(unsigned char key, int x, int y, float speed)
@@ -60,12 +65,13 @@ bool Camera::handleKey(unsigned char key, int x, int y, float speed)
 	PX_UNUSED(y);
 
 	PxVec3 viewY = mDir.cross(PxVec3(0,1,0)).getNormalized();
+	float yy = mEye.y;
 	switch(toupper(key))
 	{
-	case 'W':	mEye += mDir*2.0f*speed;		break;
-	case 'S':	mEye -= mDir*2.0f*speed;		break;
-	case 'A':	mEye -= viewY*2.0f*speed;		break;
-	case 'D':	mEye += viewY*2.0f*speed;		break;
+	case 'W':	mEye += mDir * 2.0f * speed;	mEye.y = yy;	break;
+	case 'S':	mEye -= mDir * 2.0f * speed;	mEye.y = yy;	break;
+	case 'A':	mEye -= viewY * 2.0f * speed;	mEye.y = yy;	break;
+	case 'D':	mEye += viewY * 2.0f * speed;	mEye.y = yy;	break;
 	default:							return false;
 	}
 	return true;
@@ -80,20 +86,24 @@ void Camera::handleAnalogMove(float x, float y)
 
 void Camera::handleMotion(int x, int y)
 {
-	int dx = mMouseX - x;
-	int dy = mMouseY - y;
+	float screenW = GetSystemMetrics(SM_CXSCREEN) / 4;
+	float screenH = GetSystemMetrics(SM_CYSCREEN) / 4;
+
+	float dx = screenW - x;
+	float dy = screenH - y;
 
 	PxVec3 viewY = mDir.cross(PxVec3(0,1,0)).getNormalized();
 
-	PxQuat qx(PxPi * dx / 180.0f, PxVec3(0,1,0));
+
+	PxQuat qx(PxPi * dx / 180.0f, PxVec3(0, 1, 0));
 	mDir = qx.rotate(mDir);
+
 	PxQuat qy(PxPi * dy / 180.0f, viewY);
 	mDir = qy.rotate(mDir);
 
 	mDir.normalize();
 
-	mMouseX = x;
-	mMouseY = y;
+	glutWarpPointer(screenW, screenH);
 }
 
 PxTransform Camera::getTransform() const
@@ -105,6 +115,27 @@ PxTransform Camera::getTransform() const
 
 	PxMat33 m(mDir.cross(viewY), viewY, -mDir);
 	return PxTransform(mEye, PxQuat(m));
+}
+
+bool Camera::leftClick() {
+	return Click(0);
+}
+
+bool Camera::rightClick() {
+	return Click(2);
+}
+
+bool Camera::middleClick() {
+	return Click(1);
+}
+
+bool Camera::Click(int i)
+{
+	if (click[i]) {
+		click[i] = false;
+		return true;
+	}
+	return click[i];
 }
 
 PxVec3 Camera::getEye() const

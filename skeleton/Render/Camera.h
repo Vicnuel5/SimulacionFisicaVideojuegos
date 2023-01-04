@@ -48,11 +48,19 @@ public:
 	physx::PxVec3		getEye()	const;
 	physx::PxVec3		getDir()	const;
 	physx::PxTransform	getTransform() const;
+
+	bool leftClick();
+	bool rightClick();
+	bool middleClick();
+
 private:
 	physx::PxVec3	mEye;
 	physx::PxVec3	mDir;
 	int				mMouseX;
 	int				mMouseY;
+
+	bool click[3] = { false, false, false };
+	bool Click(int i);
 };
 
 

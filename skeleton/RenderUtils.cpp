@@ -5,6 +5,8 @@
 #include "core.hpp"
 #include "RenderUtils.hpp"
 
+#define CAMERA_Y 25
+
 
 using namespace physx;
 
@@ -60,6 +62,8 @@ void keyboardCallback(unsigned char key, int x, int y)
 	if(!sCamera->handleKey(key, x, y))
 		keyPress(key, sCamera->getTransform());
 }
+
+
 
 void mouseCallback(int button, int state, int x, int y)
 {
@@ -137,7 +141,7 @@ void exitCallback(void)
 void renderLoop()
 {
 	StartCounter();
-	sCamera = new Camera(PxVec3(50.0f, 50.0f, 50.0f), PxVec3(-0.6f,-0.2f,-0.7f));
+	sCamera = new Camera(PxVec3(50.0f, CAMERA_Y, 50.0f), PxVec3(-0.6f,-0.2f,-0.7f));
 
 	setupDefaultWindow("Simulacion Fisica Videojuegos");
 	setupDefaultRenderState();
@@ -147,7 +151,8 @@ void renderLoop()
 	glutKeyboardFunc(keyboardCallback);
 	glutMouseFunc(mouseCallback);
 	glutMotionFunc(motionCallback);
-	motionCallback(0,0);
+	glutPassiveMotionFunc(motionCallback);
+	glutWarpPointer(GetSystemMetrics(SM_CXSCREEN) / 4, GetSystemMetrics(SM_CYSCREEN) / 4);
 
 	atexit(exitCallback);
 
@@ -177,8 +182,11 @@ Camera* GetCamera()
 	return sCamera;
 }
 
-PxShape* CreateShape(const PxGeometry& geo)
+PxShape* CreateShape(const PxGeometry& geo, const PxMaterial* mat)
 {
-	PxShape* shape = gPhysics->createShape(geo, *gMaterial);
+	if (mat == nullptr)
+		mat = gMaterial; // Default material
+
+	PxShape* shape = gPhysics->createShape(geo, *mat);
 	return shape;
 }
