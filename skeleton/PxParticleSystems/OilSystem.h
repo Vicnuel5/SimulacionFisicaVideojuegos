@@ -4,6 +4,7 @@
 
 #include "../PxParticles/PxParticle.h"
 
+
 class PxGravityFG;
 class Sarten;
 
@@ -19,9 +20,7 @@ public:
 
 	void Activate(Vector3 std_dev_pos);
 
-	void AceiteEnSarten(physx::PxRigidDynamic* particulaAceite);
 
-	std::list<PxParticle*>* getOilParticleList() { return &particles; }
 
 protected:
 	Vector3 std_dev_pos;

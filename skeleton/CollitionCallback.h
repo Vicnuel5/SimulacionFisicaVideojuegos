@@ -7,7 +7,9 @@
 #include "PxParticles/PxParticle.h"
 #include "PxParticles/Sarten.h"
 #include "PxParticles/Vitro.h"
+
 #include "PxParticleSystems/OilSystem.h"
+#include "PxParticleSystems/SmokeSystem.h"
 
 
 class CollitionCallback : public physx::PxSimulationEventCallback
@@ -21,11 +23,17 @@ class CollitionCallback : public physx::PxSimulationEventCallback
 	std::list<PxParticle*>* oilParticles;
 	OilSystem* oilSysyem;
 
+	std::list<PxParticle*>* smokeParticles;
+	SmokeSystem* smokeSysyem;
+	physx::PxRigidStatic* techoCampana;
+
+
 public:
 
-	CollitionCallback(Sarten* sarten, Vitro* vitro, OilSystem* oilSysyem) :
+	CollitionCallback(Sarten* sarten, Vitro* vitro, OilSystem* oilSysyem, SmokeSystem* smokeSysyem, physx::PxRigidStatic* techoCampana) :
 		objSarten(sarten), sarten(sarten->particle), objVitro(vitro), vitro(vitro->rigid),
-		oilParticles(oilSysyem->getOilParticleList()), oilSysyem(oilSysyem) {};
+		oilParticles(oilSysyem->getParticleList()), oilSysyem(oilSysyem),
+		smokeParticles(smokeSysyem->getParticleList()), smokeSysyem(smokeSysyem), techoCampana(techoCampana) {};
 
 	void onConstraintBreak(physx::PxConstraintInfo* /*constraints*/, physx::PxU32 /*count*/) override {  }
 	void onWake(physx::PxActor** /*actors*/, physx::PxU32 /*count*/) override {  }
@@ -43,10 +51,23 @@ public:
 				if ((*it)->particle == actor1) {
 					auto aux = it;
 					it++;
-					oilSysyem->AceiteEnSarten((*aux)->particle);
+					oilSysyem->desregisterParticle((*aux));
 					objSarten->echarAceite();
 					delete* aux;
 					(*oilParticles).erase(aux);
+				}
+				else it++;
+			}
+		}
+
+		if (actor2 == techoCampana) {
+			for (auto it = (*smokeParticles).begin(); it != (*smokeParticles).end(); ) {
+				if ((*it)->particle == actor1) {
+					auto aux = it;
+					it++;
+					smokeSysyem->desregisterParticle((*aux));
+					delete* aux;
+					(*smokeParticles).erase(aux);
 				}
 				else it++;
 			}

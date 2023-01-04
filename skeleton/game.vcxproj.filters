@@ -41,6 +41,15 @@
     <ClCompile Include="PxParticleSystems\PxParticleGenerator.cpp" />
     <ClCompile Include="PxParticleSystems\OilSystem.cpp" />
     <ClCompile Include="PxParticles\Vitro.cpp" />
+    <ClCompile Include="PxParticleSystems\SmokeSystem.cpp" />
+    <ClCompile Include="PxForces\PxRotationFG.cpp" />
+    <ClCompile Include="PxParticles\Humo.cpp" />
+    <ClCompile Include="PxForces\PxFlowFG.cpp" />
+    <ClCompile Include="PxForces\PxAbductFG.cpp" />
+    <ClCompile Include="PxParticles\Campana.cpp" />
+    <ClCompile Include="PxParticles\Comida.cpp" />
+    <ClCompile Include="PxForces\PxQuayFG.cpp" />
+    <ClCompile Include="PxForces\PxAnchoredSpringFG.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -91,6 +100,15 @@
     <ClInclude Include="PxParticleSystems\OilSystem.h" />
     <ClInclude Include="CollitionCallback.h" />
     <ClInclude Include="PxParticles\Vitro.h" />
+    <ClInclude Include="PxParticleSystems\SmokeSystem.h" />
+    <ClInclude Include="PxForces\PxRotationFG.h" />
+    <ClInclude Include="PxParticles\Humo.h" />
+    <ClInclude Include="PxForces\PxFlowFG.h" />
+    <ClInclude Include="PxForces\PxAbductFG.h" />
+    <ClInclude Include="PxParticles\Campana.h" />
+    <ClInclude Include="PxParticles\Comida.h" />
+    <ClInclude Include="PxForces\PxQuayFG.h" />
+    <ClInclude Include="PxForces\PxAnchoredSpringFG.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

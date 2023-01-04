@@ -11,15 +11,15 @@ PxWindFG::~PxWindFG()
 	delete windArea;
 }
 
-void PxWindFG::updateForce(PxRigidDynamic* particle, double dt)
+void PxWindFG::updateForce(PxParticle* particle, double dt)
 {
-	if (fabs(particle->getInvMass()) < 1e-10)
+	if (fabs(particle->particle->getInvMass()) < 1e-10)
 		return;
 
-	if ((particle->getGlobalPose().p - windPos).magnitudeSquared() > radius * radius) {
+	if ((particle->particle->getGlobalPose().p - windPos).magnitudeSquared() > radius * radius) {
 		return;
 	}
 
-	Vector3 v = windVel - particle->getLinearVelocity();
-	particle->addForce(k1 * v + k2 * v.magnitude() * v);
+	Vector3 v = windVel - particle->particle->getLinearVelocity();
+	particle->particle->addForce(k1 * v + k2 * v.magnitude() * v);
 }

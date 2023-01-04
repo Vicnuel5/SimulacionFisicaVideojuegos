@@ -12,7 +12,7 @@ class Aceite : public PxPickableParticle
 
 public:
 	Aceite(physx::PxPhysics* physx, physx::PxTransform& pose, OilSystem* oilSystem);
-	virtual ~Aceite();
+	virtual ~Aceite() = default;
 
 	virtual bool canInteract() override { return true; }
 

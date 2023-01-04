@@ -4,9 +4,9 @@
 #include <vector>
 #include "PxForceGenerator.h"
 
-typedef std::pair<PxForceGenerator*, PxRigidDynamic*> PxFRPair;
+typedef std::pair<PxForceGenerator*, PxParticle*> PxFRPair;
 
-class PxParticleForzeRegistry : public std::multimap<PxForceGenerator*, PxRigidDynamic*> {
+class PxParticleForzeRegistry : public std::multimap<PxForceGenerator*, PxParticle*> {
 public:
 	void updteForces(double dt) {
 		for (auto it = begin(); it != end(); it++) {
@@ -14,17 +14,17 @@ public:
 		}
 	}
 
-	void addRegistry(PxForceGenerator* f, PxRigidDynamic* p) {
+	void addRegistry(PxForceGenerator* f, PxParticle* p) {
 		insert({ f, p });
 	}
 
-	void addRegistry(std::vector<PxForceGenerator*> f, PxRigidDynamic* p) {
+	void addRegistry(std::vector<PxForceGenerator*> f, PxParticle* p) {
 		for (auto i : f) {
 			insert({ i, p });
 		}
 	}
 
-	void deleteParticleRegistry(PxRigidDynamic* p) {
+	void deleteParticleRegistry(PxParticle* p) {
 		for (auto it = begin(); it != end(); ) {
 			if (it->second == p) {
 				auto aux = it;

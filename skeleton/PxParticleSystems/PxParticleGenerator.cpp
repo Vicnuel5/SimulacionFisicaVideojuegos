@@ -30,7 +30,7 @@ PxParticleGenerator::~PxParticleGenerator()
 
 void PxParticleGenerator::integrate(double t)
 {
-	forces.updteForces(0);
+	forces.updteForces(t);
 
 	for (auto p : particles)
 		p->integrate(t);
@@ -44,6 +44,16 @@ void PxParticleGenerator::integrate(double t)
 
 void PxParticleGenerator::addForce(PxForceGenerator* fg) {
 	force_generators.push_back(fg);
+}
+
+void PxParticleGenerator::desregisterParticle(PxParticle* particulaAceite)
+{
+	forces.deleteParticleRegistry(particulaAceite);
+}
+
+std::list<PxParticle*>* PxParticleGenerator::getParticleList()
+{
+	return &particles;
 }
 
 

@@ -5,10 +5,10 @@ PxGravityFG::PxGravityFG(const Vector3& g) :
 {
 }
 
-void PxGravityFG::updateForce(PxRigidDynamic* particle, double dt)
+void PxGravityFG::updateForce(PxParticle* particle, double dt)
 {
-	if (fabs(particle->getInvMass()) < 1e-10)
+	if (fabs(particle->particle->getInvMass()) < 1e-10)
 		return;
 
-	particle->addForce(gravity * particle->getMass());
+	particle->particle->addForce(gravity * particle->particle->getMass());
 }

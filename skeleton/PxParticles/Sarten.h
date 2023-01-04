@@ -1,18 +1,25 @@
 #pragma once
 
 #include "PxPickableParticle.h"
+
+class SmokeSystem;
+
 class Sarten : public PxPickableParticle
 {
 	float aceite;
 	physx::PxVec3 tamAceite;
-	physx::PxTransform* aceiteTr;
 	
+	SmokeSystem* smokeSystem;
 
 public:
-	Sarten(physx::PxPhysics* physx, physx::PxTransform& pose);
-	virtual ~Sarten();
+	Sarten(physx::PxPhysics* physx, physx::PxTransform& pose, SmokeSystem* smokeSystem);
+	~Sarten() = default;
+
+	virtual void integrate(float dt) override;
 
 	void echarAceite();
 	void quemarAceite();
 };
+
+
 

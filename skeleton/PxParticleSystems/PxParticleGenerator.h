@@ -1,10 +1,9 @@
 #pragma once
 
-
-
 #include "../core.hpp"
 #include "../PxForces/PxParticleForceRegistry.h"
 
+using namespace physx;
 
 #include <list>
 #include <vector>
@@ -21,6 +20,9 @@ public:
 	void integrate(double t);
 
 	void addForce(PxForceGenerator* fg);
+
+	void desregisterParticle(PxParticle* particulaAceite);
+	std::list<PxParticle*>* getParticleList();
 
 protected:
 	physx::PxPhysics* physx;

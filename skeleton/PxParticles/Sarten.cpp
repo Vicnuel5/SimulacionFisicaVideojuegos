@@ -1,9 +1,11 @@
 #include "Sarten.h"
 
+#include "../PxParticleSystems/SmokeSystem.h"
+
 using namespace physx;
 
-Sarten::Sarten(physx::PxPhysics* physx, physx::PxTransform& pose) :
-	PxPickableParticle(physx, pose)
+Sarten::Sarten(physx::PxPhysics* physx, physx::PxTransform& pose, SmokeSystem* smokeSystem) :
+	PxPickableParticle(physx, pose), smokeSystem(smokeSystem)
 {
 	float ancho = 4;
 	float alto = 0.4;
@@ -37,7 +39,7 @@ Sarten::Sarten(physx::PxPhysics* physx, physx::PxTransform& pose) :
 	addItem(new PxTransform(pose), PxVec3(0, 0, ancho * 2.5),
 		CreateShape(PxBoxGeometry(Vector3(alto * 1.5 * 1.25, alto * 1.25, ancho / 3))), PxVec4(1,0,0,1));
 
-	aceiteTr = new PxTransform(pose);
+
 	tamAceite = Vector3(0.1, 0.1, 0.1);
 	
 
@@ -45,25 +47,31 @@ Sarten::Sarten(physx::PxPhysics* physx, physx::PxTransform& pose) :
 	pickedOffsetP = PxVec3(0, -5, 0);
 }
 
-Sarten::~Sarten()
+void Sarten::integrate(float dt)
 {
-	delete aceiteTr;
+	PxParticle::integrate(dt);
+	smokeSystem->integrate(dt);
 }
 
 void Sarten::echarAceite()
 {
-	if (tamAceite.x == 0)
-		addItem(aceiteTr, PxVec3(0, 0.31, 0),
+	if (tamAceite.x <= 0)
+		addItem(new PxTransform(particle->getGlobalPose().p), PxVec3(0, 0.31, 0),
 			CreateShape(PxBoxGeometry(tamAceite)), PxVec4(0, 0.5, 0, 1));
 	else if (tamAceite.x < 3) {
-		renderItems.erase(--renderItems.end());
+		DeregisterRenderItem(renderItems.back());
+		renderItems.pop_back();
 		tamAceite += PxVec3(0.05, 0, 0.05);
-		addItem(aceiteTr, PxVec3(0, 0.31, 0),
+		addItem(new PxTransform(particle->getGlobalPose().p), PxVec3(0, 0.31, 0),
 			CreateShape(PxBoxGeometry(tamAceite)), PxVec4(0, 0.5, 0, 1));
 	}	
 }
 
 void Sarten::quemarAceite()
 {
-	printf("Hola");
+
+	smokeSystem->Activate(particle->getGlobalPose().p + PxVec3(0, 0.5, 0));
+
 }
+
+

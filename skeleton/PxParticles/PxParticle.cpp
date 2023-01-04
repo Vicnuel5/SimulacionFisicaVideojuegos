@@ -20,7 +20,6 @@ PxParticle::~PxParticle()
 	for (auto i : items) {
 		delete i.first;
 	}
-
 }
 
 void PxParticle::integrate(float dt)

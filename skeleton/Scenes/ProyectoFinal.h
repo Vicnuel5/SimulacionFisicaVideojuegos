@@ -7,17 +7,20 @@
 
 #include <list>
 
-#define THROW_FORCE 100000
+#define THROW_FORCE 50000
 
 class PxParticle;
 class PxRigid;
 class PxRigidGroup;
 
 class Vitro;
+class CampanaExtractora;
 
 class PxGravityFG;
+class PxQuayFG;
 
-
+class OilSystem;
+class SmokeSystem;
 
 class ProyectoFinal : public Scene
 {
@@ -35,6 +38,7 @@ public:
 	void init_actors();
 	void mouse_click();
 	void pick_object();
+	void pick_object2();
 	void throw_object();
 
 protected:
@@ -43,6 +47,7 @@ protected:
 
 	PxParticleForzeRegistry forces;
 	PxGravityFG* gravity;
+	std::list<PxQuayFG*> slink;
 
 	std::list<PxParticle*> particles;
 	std::list<PxRigid*> rigids;
@@ -51,5 +56,9 @@ protected:
 	PxParticle* pickedObject;
 
 	Vitro* vitro;
+	CampanaExtractora* campanaExtractora;
+
+	OilSystem* oilSys;
+	SmokeSystem* smokeSys;
 };
 

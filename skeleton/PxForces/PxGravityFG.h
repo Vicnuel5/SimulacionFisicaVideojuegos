@@ -7,7 +7,7 @@ class PxGravityFG : public PxForceGenerator
 public:
 	PxGravityFG(const Vector3& g);
 
-	virtual void updateForce(physx::PxRigidDynamic* particle, double dt) override;
+	virtual void updateForce(PxParticle* particle, double dt) override;
 
 	inline void setGravity(const Vector3& g) { gravity = g; }
 

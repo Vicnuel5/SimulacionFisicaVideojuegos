@@ -41,12 +41,12 @@ void Practica5::s_init()
 	myScene->addActor(*cubo);
 	
 
-	g = new PxGravityFG({ 0, -9.8, 0 });
-	forces.addRegistry(g, bola);
-	forces.addRegistry(g, cubo);
+	//g = new PxGravityFG({ 0, -9.8, 0 });
+	//forces.addRegistry(g, bola);
+	//forces.addRegistry(g, cubo);
 
-	w = new PxWindFG({ 100, 0, 0 }, { 0, 0, 0 }, 50);
-	forces.addRegistry(w, bola);
+	//w = new PxWindFG({ 100, 0, 0 }, { 0, 0, 0 }, 50);
+	//forces.addRegistry(w, bola);
 }
 
 void Practica5::s_clean()

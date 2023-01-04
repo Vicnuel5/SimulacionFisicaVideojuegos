@@ -1,11 +1,12 @@
 #pragma once
 
 #include <list>
-#include <PxPhysicsAPI.h>
+
 
 #include "../core.hpp"
+#include "../PxParticles/PxParticle.h"
 
-using namespace physx;
+
 
 class PxForceGenerator
 {
@@ -13,7 +14,7 @@ public:
 
 	virtual ~PxForceGenerator() = default;
 
-	virtual void updateForce(PxRigidDynamic* particle, double dt) = 0;
+	virtual void updateForce(PxParticle* particle, double dt) = 0;
 	double t = -1e10;
 };
 

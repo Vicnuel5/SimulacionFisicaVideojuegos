@@ -1,9 +1,11 @@
 #include "OilSystem.h"
 
 #include "../PxParticles/Aceite.h"
-#include "../PxParticles/Sarten.h"
 
 #include "../PxForces/PxGravityFG.h"
+
+
+
 
 OilSystem::OilSystem(physx::PxPhysics* physx, physx::PxScene* scene) :
 	PxParticleGenerator(physx, scene), activated(false), cont(0), std_dev_pos(PxVec3())
@@ -17,10 +19,7 @@ void OilSystem::Activate(Vector3 pos)
 	std_dev_pos = pos;
 }
 
-void OilSystem::AceiteEnSarten(physx::PxRigidDynamic* particulaAceite)
-{
-	forces.deleteParticleRegistry(particulaAceite);
-}
+
 
 void OilSystem::p_Integrate(double t)
 {
@@ -37,7 +36,7 @@ void OilSystem::p_Integrate(double t)
 
 			
 			particles.push_back(p);
-			forces.addRegistry(force_generators, p->particle);
+			forces.addRegistry(force_generators, p);
 
 			cont = 0;
 		}

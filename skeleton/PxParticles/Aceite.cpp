@@ -33,12 +33,6 @@ Aceite::Aceite(physx::PxPhysics* physx, physx::PxTransform& pose, OilSystem* oil
 	pickedOffsetQ = PxQuat(3.1415, PxVec3(0, 0, 1));
 }
 
-Aceite::~Aceite()
-{
-	delete oilSystem;
-	delete taponTr;
-}
-
 void Aceite::integrate(float dt)
 {
 	PxParticle::integrate(dt);

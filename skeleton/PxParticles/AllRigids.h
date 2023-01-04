@@ -2,6 +2,14 @@
 
 #include "PxRigid.h"
 
+class SostenCebollas : public PxRigid
+{
+public:
+	SostenCebollas(physx::PxPhysics* physx, physx::PxTransform& pose,
+		physx::PxVec3 size, physx::PxVec4 color);
+	virtual ~SostenCebollas() = default;
+};
+
 class Suelo : public PxRigid
 {
 public: 
@@ -80,20 +88,9 @@ public:
 	virtual ~Cajon() = default;
 };
 
-class ComponenteCampana : public PxRigid
-{
-public:
-	ComponenteCampana(physx::PxPhysics* physx, physx::PxTransform& pose,
-		physx::PxVec3 size, physx::PxVec4 color);
-	virtual ~ComponenteCampana() = default;
-};
 
-class CampanaExtractora : public PxRigidGroup
-{
-public:
-	CampanaExtractora(physx::PxPhysics* physx, physx::PxTransform& pose, physx::PxVec4 color);
-	virtual ~CampanaExtractora() = default;
-};
+
+
 
 
 

@@ -95,6 +95,9 @@ void cleanupPhysics(bool interactive)
 	transport->release();
 	
 	gFoundation->release();
+
+	scene->s_clean();
+	delete scene;
 }
 
 void createScene(Scene* newScene) {
@@ -146,6 +149,7 @@ int main(int, const char*const*)
 #ifndef OFFLINE_EXECUTION 
 	extern void renderLoop();
 	renderLoop();
+	
 #else
 	static const PxU32 frameCount = 100;
 	initPhysics(false);

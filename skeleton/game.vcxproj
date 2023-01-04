@@ -253,6 +253,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PxForces\PxAnchoredSpringFG.cpp" />
+    <ClCompile Include="PxParticles\Comida.cpp" />
+    <ClCompile Include="PxParticles\Campana.cpp" />
+    <ClCompile Include="PxForces\PxAbductFG.cpp" />
+    <ClCompile Include="PxForces\PxFlowFG.cpp" />
+    <ClCompile Include="PxParticles\Humo.cpp" />
     <ClCompile Include="PxParticleSystems\OilSystem.cpp" />
     <ClCompile Include="PxParticleSystems\PxParticleGenerator.cpp" />
     <ClCompile Include="PxParticles\Aceite.cpp" />
@@ -269,6 +275,8 @@
     <ClCompile Include="PxParticles\PxParticle.cpp" />
     <ClCompile Include="PxParticles\PxRigid.cpp" />
     <ClCompile Include="PxParticles\Sarten.cpp" />
+    <ClCompile Include="PxForces\PxRotationFG.cpp" />
+    <ClCompile Include="PxForces\PxQuayFG.cpp" />
     <ClCompile Include="Scenes\ProyectoFinal.cpp" />
     <ClCompile Include="PxForces\PxGravityFG.cpp" />
     <ClCompile Include="PxForces\PxWindFG.cpp" />
@@ -289,9 +297,16 @@
     <ClCompile Include="Forces\WindForceGenerator.cpp" />
     <ClCompile Include="PxParticles\AllRigids.cpp" />
     <ClCompile Include="PxParticles\Vitro.cpp" />
+    <ClCompile Include="PxParticleSystems\SmokeSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PxForces\PxAnchoredSpringFG.h" />
+    <ClInclude Include="PxParticles\Comida.h" />
+    <ClInclude Include="PxParticles\Campana.h" />
     <ClInclude Include="CollitionCallback.h" />
+    <ClInclude Include="PxForces\PxAbductFG.h" />
+    <ClInclude Include="PxForces\PxFlowFG.h" />
+    <ClInclude Include="PxParticles\Humo.h" />
     <ClInclude Include="PxParticleSystems\OilSystem.h" />
     <ClInclude Include="PxParticleSystems\PxParticleGenerator.h" />
     <ClInclude Include="PxParticles\Aceite.h" />
@@ -311,6 +326,8 @@
     <ClInclude Include="PxParticles\PxPickableParticle.h" />
     <ClInclude Include="PxParticles\PxRigid.h" />
     <ClInclude Include="PxParticles\Sarten.h" />
+    <ClInclude Include="PxForces\PxRotationFG.h" />
+    <ClInclude Include="PxForces\PxQuayFG.h" />
     <ClInclude Include="Scenes\ProyectoFinal.h" />
     <ClInclude Include="PxForces\PxForceGenerator.h" />
     <ClInclude Include="PxForces\PxParticleForceRegistry.h" />
@@ -335,6 +352,7 @@
     <ClInclude Include="Forces\WhirlwindForceGenerator.h" />
     <ClInclude Include="PxParticles\AllRigids.h" />
     <ClInclude Include="PxParticles\Vitro.h" />
+    <ClInclude Include="PxParticleSystems\SmokeSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
