@@ -18,7 +18,7 @@ Sarten::Sarten(physx::PxPhysics* physx, physx::PxTransform& pose, SmokeSystem* s
 	particle->setMassSpaceInertiaTensor({ size.y * size.z, size.x * size.z, size.x * size.y - 100 });
 	particle->setLinearDamping(0.99);
 	particle->setAngularDamping(0.99);
-	particle->setMass(0.1);
+	particle->setMass(0.3);
 
 	renderItems.push_back(new RenderItem(s_sarten, particle, color));
 

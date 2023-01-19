@@ -51,10 +51,10 @@ PuertaCajon::PuertaCajon(physx::PxPhysics* physx, physx::PxTransform& pose) :
 	particle->setAngularDamping(0.99);
 	particle->setMass(0.1);
 
-	renderItems.push_back(new RenderItem(s_puertaNevera, particle, { 0.5,0.25,0,1 }));
+	renderItems.push_back(new RenderItem(s_puertaNevera, particle, { 0.5, 0.25, 0, 1 }));
 
 	addItem(new PxTransform(pose), PxVec3(0, 0, 0.25),
-		CreateShape(PxBoxGeometry(Vector3(4, 0.5, 0.5))), { 0.6,0.3,0,1 });
+		CreateShape(PxBoxGeometry(Vector3(4, 0.5, 0.5))), { 0.25, 0.125, 0, 1 });
 
 	pickedOffsetP = PxVec3(0, -5, 0);
 }

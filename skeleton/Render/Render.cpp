@@ -249,7 +249,7 @@ void setupDefaultWindow(const char *name)
 
 	glutInit(&argc, argv);
 	
-	glutInitWindowSize(512, 512);
+	glutInitWindowSize(1920, 1080);
 	glutInitDisplayMode(GLUT_RGB|GLUT_DOUBLE|GLUT_DEPTH);
 	int mainHandle = glutCreateWindow(name);
 	glutSetWindow(mainHandle);
@@ -273,7 +273,7 @@ void setupDefaultRenderState()
 	PxReal ambientColor[]	= { 0.0f, 0.1f, 0.2f, 0.0f };
 	PxReal diffuseColor[]	= { 1.0f, 1.0f, 1.0f, 0.0f };		
 	PxReal specularColor[]	= { 0.0f, 0.0f, 0.0f, 0.0f };		
-	PxReal position[]		= { 0.0f, 15.0f, 0.0f, 1.0f };		
+	PxReal position[]		= { 0.0f, 20.0f, 0.0f, 1.0f };		
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientColor);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseColor);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, specularColor);

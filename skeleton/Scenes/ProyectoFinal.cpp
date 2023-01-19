@@ -48,12 +48,12 @@ void ProyectoFinal::s_init()
 		PxVec3(5, 0.25, 7), PxVec4(0, 0, 0, 1));
 	rigids.push_back(vitro);
 
-	gRigids.push_back(new Nevera(myPhysics, PxTransform({ 26, 20.5, -15 }), PxVec4(1,0,0,1)));
-	gRigids.push_back(new Cajon(myPhysics, PxTransform({ -10.25, 7, -13.5 }), PxVec4(1, 0, 0, 1)));
-	gRigids.push_back(new Cajon(myPhysics, PxTransform({ -26.25, 7, -13.5 }), PxVec4(1, 0, 0, 1)));
-	gRigids.push_back(new Cajon(myPhysics, PxTransform({ 5.75, 7, -13.5 }), PxVec4(1, 0, 0, 1)));
+	gRigids.push_back(new Nevera(myPhysics, PxTransform({ 26, 20.5, -15 }), PxVec4(0.7, 0.7, 0.9, 1)));
+	gRigids.push_back(new Cajon(myPhysics, PxTransform({ -10.25, 7, -13.5 }), PxVec4(0.25, 0.125, 0, 1)));
+	gRigids.push_back(new Cajon(myPhysics, PxTransform({ -26.25, 7, -13.5 }), PxVec4(0.25, 0.125, 0, 1)));
+	gRigids.push_back(new Cajon(myPhysics, PxTransform({ 5.75, 7, -13.5 }), PxVec4(0.25, 0.125, 0, 1)));
 	smokeSys = new SmokeSystem(myPhysics, myScene, Vector3(-5, 55, -15));
-	campanaExtractora = new CampanaExtractora(myPhysics, PxTransform({ -5, 45, -15 }), PxVec4(1, 0, 0, 1), smokeSys);
+	campanaExtractora = new CampanaExtractora(myPhysics, PxTransform({ -5, 45, -15 }), PxVec4(0.1, 0.1, 0.1, 1), smokeSys);
 	gRigids.push_back(campanaExtractora);
 
 	particles.push_back(new PuertaNevera(myPhysics, (PxTransform({ 26, 16, -7 }))));
@@ -62,13 +62,51 @@ void ProyectoFinal::s_init()
 	particles.push_back(new PuertaCajon(myPhysics, (PxTransform({ -26.25, 7, -5.75 }))));
 	particles.push_back(new PuertaCajon(myPhysics, (PxTransform({ 5.75, 7, -5.75 }))));
 
-	particles.push_back(new Cebolla(myPhysics, (PxTransform({ 0, 18, -15 }))));
-	particles.push_back(new Tomate(myPhysics, (PxTransform({ 0, 18, -15 }))));
-	particles.push_back(new Tortilla(myPhysics, (PxTransform({ 0, 18, -10 }))));
-	particles.push_back(new Agua(myPhysics, (PxTransform({ 5, 18, -10 }))));
+	for (int i = 0;  i < 3; i++)
+		particles.push_back(new Cebolla(myPhysics, (PxTransform({ (float)(-30 + i * 3), 5, -10.5}))));
+	for (int i = 0; i < 4; i++)
+		particles.push_back(new Tomate(myPhysics, (PxTransform({ (float)(-15.25 + i * 3), 5, -11.5}))));
+	//particles.push_back(new Cebolla(myPhysics, (PxTransform({ 0, 18, -15 }))));
+	particles.push_back(new Tomate(myPhysics, (PxTransform({ 4, 18, -15 }))));
+	particles.push_back(new Tomate(myPhysics, (PxTransform({ 3.5, 18, -14 }))));
+	particles.push_back(new Cebolla(myPhysics, (PxTransform({ -23, 18, -10 }))));
+	particles.push_back(new Agua(myPhysics, (PxTransform({ 8, 18, -9 }))));
+	particles.push_back(new Agua(myPhysics, (PxTransform({ 11, 18, -8 }))));
+	particles.push_back(new Agua(myPhysics, (PxTransform({ 14, 18, -7 }))));
+	particles.push_back(new Tortilla(myPhysics, (PxTransform({ 9.75, 8, -10.75 }))));
+	particles.push_back(new Tortilla(myPhysics, (PxTransform({ 5.75, 9, -10.75 }))));
+	particles.push_back(new Tortilla(myPhysics, (PxTransform({ 8.75, 6, -14.75 }))));
+	particles.push_back(new Tortilla(myPhysics, (PxTransform({ 5.75, 5, -10.75 }))));
+	PxTransform tr = PxTransform({ 22, 22.5, -15 });
+	tr.q = tr.q * PxQuat(3.14 / 2, PxVec3(1, 0, 0));
+	for (int i = 0; i < 4; i++) {
+		particles.push_back(new Agua(myPhysics, tr));
+		tr.p += PxVec3(3, 0, 0);
+	}
+	tr = PxTransform({ 24, 12.5, -15 });
+	tr.q = tr.q * PxQuat(3.14 / 2, PxVec3(1, 0, 0));
+	for (int i = 0; i < 3; i++) {
+		particles.push_back(new Agua(myPhysics, tr));
+		tr.p += PxVec3(3, 0, 0);
+	}
+	tr = PxTransform({ 22, 32.5, -15 });
+	tr.q = tr.q * PxQuat(3.14 / 2, PxVec3(1, 0, 0));
+	for (int i = 0; i < 4; i++) {
+		particles.push_back(new Agua(myPhysics, tr));
+		tr.p += PxVec3(3, 0, 0);
+	}
+	tr = PxTransform({ 24, 34.5, -15 });
+	tr.q = tr.q * PxQuat(3.14 / 2, PxVec3(1, 0, 0));
+	for (int i = 0; i < 3; i++) {
+		particles.push_back(new Agua(myPhysics, tr));
+		tr.p += PxVec3(3, 0, 0);
+	}
 
+	particles.push_back(new Tortilla(myPhysics, (PxTransform({ 25, 27.5, -15 }))));
+	particles.push_back(new Tortilla(myPhysics, (PxTransform({ 28, 29.5, -13.5 }))));
+	//particles.push_back(new Tortilla(myPhysics, (PxTransform({ 22, 22.5, -15 }))));
 	
-	Sarten* sarten = new Sarten(myPhysics, (PxTransform({ -9, 18, -15 })), smokeSys);
+	Sarten* sarten = new Sarten(myPhysics, (PxTransform({ -15, 18, -15 })), smokeSys);
 	particles.push_back(sarten);
 	oilSys = new OilSystem(myPhysics, myScene);
 	particles.push_back(new Aceite(myPhysics, PxTransform({ -30, 24, -20 }), oilSys));
@@ -243,7 +281,7 @@ void ProyectoFinal::mouse_click()
 	auto c = GetCamera();
 	if (c->leftClick()) {
 		//cout << "ClickIz\n";
-		pick_object2();
+		pick_object();
 	}
 	if (c->rightClick()) {
 		//cout << "ClickDr\n";
@@ -252,7 +290,7 @@ void ProyectoFinal::mouse_click()
 	}
 	if (c->middleClick()) {
 		//cout << "ClickMd\n";
-		pick_object();
+		pick_object2();
 	}
 }
 

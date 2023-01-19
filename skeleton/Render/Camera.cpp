@@ -27,6 +27,8 @@
 // Copyright (c) 2004-2008 AGEIA Technologies, Inc. All rights reserved.
 // Copyright (c) 2001-2004 NovodeX AG. All rights reserved.  
 
+#define TAM_PANTALLA 2
+
 #include <iostream>
 using namespace std;
 
@@ -86,8 +88,8 @@ void Camera::handleAnalogMove(float x, float y)
 
 void Camera::handleMotion(int x, int y)
 {
-	float screenW = GetSystemMetrics(SM_CXSCREEN) / 4;
-	float screenH = GetSystemMetrics(SM_CYSCREEN) / 4;
+	float screenW = GetSystemMetrics(SM_CXSCREEN) / TAM_PANTALLA;
+	float screenH = GetSystemMetrics(SM_CYSCREEN) / TAM_PANTALLA;
 
 	float dx = screenW - x;
 	float dy = screenH - y;

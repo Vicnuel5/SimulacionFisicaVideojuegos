@@ -11,7 +11,7 @@ Cebolla::Cebolla(physx::PxPhysics* physx, physx::PxTransform& pose) :
 	particle->attachShape(*s_comida);
 	particle->setLinearDamping(0.99);
 	particle->setAngularDamping(0.99);
-	particle->setMass(0.5);
+	particle->setMass(1.5);
 
 	renderItems.push_back(new RenderItem(s_comida, particle, color));
 }
@@ -20,11 +20,11 @@ Tomate::Tomate(physx::PxPhysics* physx, physx::PxTransform& pose) : PxPickablePa
 {
 	Vector4 color(1, 0, 0, 1);
 	
-	PxShape* s_comida = CreateShape(PxSphereGeometry(1), physx->createMaterial(0, 0, 1));
+	PxShape* s_comida = CreateShape(PxSphereGeometry(1), physx->createMaterial(0.25, 0.25, 0.5));
 	particle->attachShape(*s_comida);
 	particle->setLinearDamping(0.99);
 	particle->setAngularDamping(0.99);
-	particle->setMass(0.5);
+	particle->setMass(2);
 
 	renderItems.push_back(new RenderItem(s_comida, particle, color));
 
@@ -46,7 +46,7 @@ Tortilla::Tortilla(physx::PxPhysics* physx, physx::PxTransform& pose)
 	particle->setMassSpaceInertiaTensor({ size.y * size.z, size.x * size.z, size.x * size.y });
 	particle->setLinearDamping(0.99);
 	particle->setAngularDamping(0.99);
-	particle->setMass(0.0001);
+	particle->setMass(3);
 
 	renderItems.push_back(new RenderItem(s_sarten, particle, color));
 }
@@ -58,12 +58,12 @@ Agua::Agua(physx::PxPhysics* physx, physx::PxTransform& pose)
 	float alto = 3.5;
 
 	Vector3 size(ancho, alto, ancho);
-	PxShape* s_aceite = CreateShape(PxBoxGeometry(size), physx->createMaterial(0.5, 0.5, 0));
+	PxShape* s_aceite = CreateShape(PxBoxGeometry(size), physx->createMaterial(0, 0.5, 0));
 	particle->attachShape(*s_aceite);
 	particle->setMassSpaceInertiaTensor({ size.y * size.z, size.x * size.z, size.x * size.y });
 	particle->setLinearDamping(0.99);
 	particle->setAngularDamping(0.99);
-	particle->setMass(1);
+	particle->setMass(0.6);
 
 	renderItems.push_back(new RenderItem(s_aceite, particle, PxVec4(0.23, 0.51, 0.72, 1)));
 
