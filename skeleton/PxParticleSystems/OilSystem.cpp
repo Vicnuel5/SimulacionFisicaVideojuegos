@@ -43,19 +43,6 @@ void OilSystem::p_Integrate(double t)
 	}
 }
 
-void OilSystem::p_Refresh()
-{
-	//for (auto it = particles.begin(); it != particles.end(); ) {
-	//	if ((*it)->getPos().y < diePos) {
-	//		auto aux = it;
-	//		it++;
-	//		forces.deleteParticleRegistry(*aux);
-	//		delete* aux;
-	//		particles.erase(aux);
-	//	}
-	//	else it++;
-	//}
-}
 
 
 

@@ -6,7 +6,6 @@ class SmokeSystem;
 
 class Sarten : public PxPickableParticle
 {
-	float aceite;
 	physx::PxVec3 tamAceite;
 	
 	SmokeSystem* smokeSystem;

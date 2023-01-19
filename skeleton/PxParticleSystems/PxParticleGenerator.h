@@ -21,7 +21,7 @@ public:
 
 	void addForce(PxForceGenerator* fg);
 
-	void desregisterParticle(PxParticle* particulaAceite);
+	void desregisterParticle(PxParticle* particle);
 	std::list<PxParticle*>* getParticleList();
 
 protected:

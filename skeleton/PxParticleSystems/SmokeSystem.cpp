@@ -60,9 +60,6 @@ void SmokeSystem::p_Integrate(double t)
 	}
 }
 
-void SmokeSystem::p_Refresh()
-{
-}
 
 
 

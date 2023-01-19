@@ -46,9 +46,9 @@ void PxParticleGenerator::addForce(PxForceGenerator* fg) {
 	force_generators.push_back(fg);
 }
 
-void PxParticleGenerator::desregisterParticle(PxParticle* particulaAceite)
+void PxParticleGenerator::desregisterParticle(PxParticle* particle)
 {
-	forces.deleteParticleRegistry(particulaAceite);
+	forces.deleteParticleRegistry(particle);
 }
 
 std::list<PxParticle*>* PxParticleGenerator::getParticleList()

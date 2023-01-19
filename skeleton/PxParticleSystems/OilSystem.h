@@ -20,19 +20,13 @@ public:
 
 	void Activate(Vector3 std_dev_pos);
 
-
-
 protected:
 	Vector3 std_dev_pos;
-
-	double diePos;
 
 	std::normal_distribution<float> dPos{ 0, 0.1 };
 
 	void p_Integrate(double t) override;
-	void p_Refresh() override;
-
-	PxGravityFG* gravity;
+	void p_Refresh() override {};
 };
 
 
