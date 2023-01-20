@@ -4,7 +4,7 @@ Controles:
 >
 > Clic Derecho ==> Dejar / Coger el objeto más cercano al jugador
 >
-> Clic central ==> Dejar / Coger el objeto más cercano al centro del área de colisión
+> Clic Central ==> Dejar / Coger el objeto más cercano al centro del área de colisión
 >
 > Clic Iizquierdo ==> Tirar objeto con fuerza
 >
@@ -19,7 +19,7 @@ Objetos Interactuables:
 >* Sartén
 >* Tomates
 >* Cebollas
->* Tortillas
+>* Tortillas de patata
 >* Puertas de los cajones
 >* Puertas de la nevera
 >* Botellas de Agua
