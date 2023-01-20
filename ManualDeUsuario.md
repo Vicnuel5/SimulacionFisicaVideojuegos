@@ -1,18 +1,18 @@
 Controles:
 
->WASD ==> Movimiento del jugador
+> WASD ==> Movimiento del jugador
 >
->Clic Derecho ==> Dejar / Coger el objeto más cercano al jugador
+> Clic Derecho ==> Dejar / Coger el objeto más cercano al jugador
 >
->Clic central ==> Dejar / Coger el objeto más cercano al centro del área de colisión
+> Clic central ==> Dejar / Coger el objeto más cercano al centro del área de colisión
 >
->Clic Iizquierdo ==> Tirar objeto con fuerza
+> Clic Iizquierdo ==> Tirar objeto con fuerza
 >
->Z ==> Activar / Desactivar la vitro
+> Z ==> Activar / Desactivar la vitro
 >
->X ==> Activar / Desctivar la campana extractora
+> X ==> Activar / Desctivar la campana extractora
 >
->E ==> Utilizar la botella de aceite (si la tienes cogida)
+> E ==> Utilizar la botella de aceite (si la tienes cogida)
 
 Objetos Interactuables:
 
